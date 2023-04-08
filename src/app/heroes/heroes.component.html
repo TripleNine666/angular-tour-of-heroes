@@ -6,7 +6,8 @@
 
   <!-- (click) passes input value to add() and then clears the input -->
   <button
-    type="button"
+    mat-raised-button
+    color="primary"
     class="add-button"
     (click)="add(heroName.value); heroName.value = ''"
   >
@@ -21,11 +22,13 @@
     </a>
     <button
       type="button"
+      mat-icon-button
+      color="accent"
       class="delete"
       title="delete hero"
       (click)="delete(hero)"
     >
-      x
+      <mat-icon>delete</mat-icon>
     </button>
   </li>
 </ul>
