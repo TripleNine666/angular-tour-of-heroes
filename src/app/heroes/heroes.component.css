@@ -6,13 +6,8 @@
   width: 15em;
 }
 
-input {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  padding: 0.5rem;
-  margin: 1rem 0;
-  box-sizing: border-box;
+.new-hero {
+  width: 250px;
 }
 
 .heroes li {
@@ -64,9 +59,11 @@ input {
 }
 
 .add-button {
+  align-self: center;
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   margin-bottom: 2rem;
+  width: 50%;
 }
 
 .add-button:hover {

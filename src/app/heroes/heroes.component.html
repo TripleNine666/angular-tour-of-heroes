@@ -1,9 +1,19 @@
 <h2>My Heroes</h2>
 
-<div>
-  <label for="new-hero">Hero name: </label>
-  <input id="new-hero" #heroName />
-
+<div fxLayout="column">
+  <mat-form-field class="new-hero">
+    <mat-label>Hero name</mat-label>
+    <input matInput type="text" #heroName />
+    <button
+      *ngIf="heroName.value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="heroName.value = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <!-- (click) passes input value to add() and then clears the input -->
   <button
     mat-raised-button
@@ -28,7 +38,7 @@
       title="delete hero"
       (click)="delete(hero)"
     >
-      <mat-icon>delete</mat-icon>
+      <mat-icon>close</mat-icon>
     </button>
   </li>
 </ul>
