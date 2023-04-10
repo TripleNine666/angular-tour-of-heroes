@@ -1,6 +1,6 @@
-<h2>My Heroes</h2>
+<h2 fxLayoutAlign="center center">My Heroes</h2>
 
-<div fxLayout="column">
+<div fxLayout="column" fxLayoutAlign="center center">
   <mat-form-field class="new-hero">
     <mat-label>Hero name</mat-label>
     <input matInput type="text" #heroName />
@@ -14,7 +14,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <!-- (click) passes input value to add() and then clears the input -->
+
   <button
     mat-raised-button
     color="primary"
@@ -25,20 +25,17 @@
   </button>
 </div>
 
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{ hero.id }}">
-      <span class="badge">{{ hero.id }}</span> {{ hero.name }}
-    </a>
+<mat-nav-list>
+  <mat-list-item *ngFor="let hero of heroes" routerLink="/detail/{{ hero.id }}">
+    <span fxFlexOffset="0 120px" matListItemIcon id="badge">{{ hero.id }}</span>
+    <a matListItemTitle>{{ hero.name }}</a>
     <button
-      type="button"
       mat-icon-button
-      color="accent"
-      class="delete"
-      title="delete hero"
+      color="primary"
       (click)="delete(hero)"
+      matListItemMeta
     >
       <mat-icon>close</mat-icon>
     </button>
-  </li>
-</ul>
+  </mat-list-item>
+</mat-nav-list>
