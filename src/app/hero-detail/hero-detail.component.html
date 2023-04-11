@@ -1,10 +1,44 @@
-<div *ngIf="hero">
-  <h2>{{ hero.name | uppercase }} Details</h2>
-  <div>id: {{ hero.id }}</div>
+<div *ngIf="hero" fxLayout="column" fxLayoutAlign="center center">
+  <h2
+    [matBadge]="hero.id"
+    matBadgeColor="accent"
+    matBadgeOverlap="false"
+    matBadgeSize="medium"
+    matBadgePosition="above before"
+  >
+    {{ hero.name | uppercase }} Details
+  </h2>
+  <mat-form-field color="accent">
+    <mat-label>Hero name</mat-label>
+    <input type="text" matInput [(ngModel)]="hero.name" />
+    <button
+      *ngIf="hero.name"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="hero.name = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name" />
+    <button
+      mat-raised-button
+      color="accent"
+      class="active-butt"
+      type="button"
+      (click)="goBack()"
+    >
+      go back
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      class="active-butt"
+      type="button"
+      (click)="save()"
+    >
+      save
+    </button>
   </div>
-  <button type="button" (click)="goBack()">go back</button>
-  <button type="button" (click)="save()">save</button>
 </div>

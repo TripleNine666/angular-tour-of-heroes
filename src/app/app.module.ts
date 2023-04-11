@@ -19,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     MatInputModule,
     MatListModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
