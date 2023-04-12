@@ -1,18 +1,24 @@
 /* MessagesComponent's private CSS styles */
+.messages {
+  margin: 25px 0;
+}
 h2 {
   color: #a80000;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
-
+.card {
+  width: 20rem;
+}
+.content {
+  margin: 6px 0;
+}
 .clear {
-  color: #333;
-  background-color: #eee;
-  margin-bottom: 12px;
+  margin: 12px 0;
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;
 }
-.clear:hover {
+/* .clear:hover {
   box-shadow: 2px 2px 20px 2px rgba(34, 60, 80, 0.2);
-}
+} */

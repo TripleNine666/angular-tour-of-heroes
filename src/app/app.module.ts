@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatListModule,
     MatAutocompleteModule,
     MatBadgeModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

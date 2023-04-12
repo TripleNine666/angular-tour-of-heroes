@@ -1,13 +1,25 @@
-<div *ngIf="messageService.messages.length">
-  <h2>Messages</h2>
-  <button
-    mat-raised-button
-    color="primary"
-    type="button"
-    class="clear"
-    (click)="messageService.clear()"
-  >
-    Clear messages
-  </button>
-  <div *ngFor="let message of messageService.messages">{{ message }}</div>
+<div class="messages">
+  <mat-card *ngIf="messageService.messages.length" class="card">
+    <mat-card-header fxLayoutAlign="center">
+      <mat-card-title>
+        <h2>Messages</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+      <div class="content" *ngFor="let message of messageService.messages">
+        {{ message }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        class="clear"
+        (click)="messageService.clear()"
+      >
+        Clear messages
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
