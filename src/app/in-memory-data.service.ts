@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Hero } from './hero';
+import { CLASSES, RACES, SEX } from './static-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
-      { id: 12, name: 'Dr. Nice' },
-      { id: 13, name: 'Bombasto' },
-      { id: 14, name: 'Celeritas' },
-      { id: 15, name: 'Magneta' },
-      { id: 16, name: 'RubberMan' },
-      { id: 17, name: 'Dynama' },
-      { id: 18, name: 'Dr. IQ' },
-      { id: 19, name: 'Magma' },
-      { id: 20, name: 'Tornado' },
+    const heroes: Hero[] = [
+      {
+        id: 1,
+        name: 'Dr. Nice',
+        class: CLASSES[0],
+        race: RACES[2],
+        sex: SEX[0],
+      },
+      {
+        id: 2,
+        name: 'Bombasto',
+        class: CLASSES[2],
+        race: RACES[3],
+        sex: SEX[0],
+      },
+      {
+        id: 3,
+        name: 'Celeritas',
+        class: CLASSES[4],
+        race: RACES[5],
+        sex: SEX[1],
+      },
     ];
     return { heroes };
   }

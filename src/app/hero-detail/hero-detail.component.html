@@ -8,6 +8,7 @@
   >
     {{ hero.name | uppercase }} Details
   </h2>
+  <!-- name -->
   <mat-form-field color="accent">
     <mat-label>Hero name</mat-label>
     <input type="text" matInput [(ngModel)]="hero.name" />
@@ -20,6 +21,33 @@
     >
       <mat-icon>close</mat-icon>
     </button>
+  </mat-form-field>
+  <!-- class -->
+  <mat-form-field>
+    <mat-label>Class</mat-label>
+    <mat-select [(value)]="hero.class">
+      <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
+        {{ class }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- race -->
+  <mat-form-field>
+    <mat-label>Race</mat-label>
+    <mat-select [(value)]="hero.race">
+      <mat-option *ngFor="let race of staticData.RACES" [value]="race">
+        {{ race }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- sex -->
+  <mat-form-field>
+    <mat-label>Sex</mat-label>
+    <mat-select [(value)]="hero.sex">
+      <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
+        {{ sex }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <div>
     <button

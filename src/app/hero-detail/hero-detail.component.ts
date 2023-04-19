@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import * as constants from '../static-data';
 
 import { HeroService } from '../hero.service';
 
@@ -17,6 +18,9 @@ export class HeroDetailComponent {
     private heroService: HeroService,
     private location: Location
   ) {}
+
+  staticData = constants;
+
   ngOnInit(): void {
     this.getHero();
   }
