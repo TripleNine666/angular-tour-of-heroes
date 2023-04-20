@@ -7,6 +7,9 @@
   font-size: 1em;
   padding: 0.5rem;
 } */
+.form-field {
+  width: 250px;
+}
 .active-butt {
   margin-right: 0.5rem;
   padding: 1rem;

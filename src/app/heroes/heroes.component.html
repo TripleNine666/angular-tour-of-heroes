@@ -1,25 +1,11 @@
 <h2 fxLayoutAlign="center center">My Heroes</h2>
 
 <div fxLayout="column" fxLayoutAlign="center center">
-  <mat-form-field class="new-hero">
-    <mat-label>Hero name</mat-label>
-    <input matInput type="text" #heroName />
-    <button
-      *ngIf="heroName.value"
-      matSuffix
-      mat-icon-button
-      aria-label="Clear"
-      (click)="heroName.value = ''"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-
   <button
     mat-raised-button
     color="primary"
     class="add-button"
-    (click)="add(heroName.value); heroName.value = ''"
+    routerLink="/add-hero"
   >
     Add hero
   </button>

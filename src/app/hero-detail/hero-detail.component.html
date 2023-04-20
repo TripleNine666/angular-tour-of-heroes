@@ -1,5 +1,6 @@
-<div *ngIf="hero" fxLayout="column" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutAlign="center center">
   <h2
+    *ngIf="existisHero; else addHeroTitle"
     [matBadge]="hero.id"
     matBadgeColor="accent"
     matBadgeOverlap="false"
@@ -8,8 +9,11 @@
   >
     {{ hero.name | uppercase }} Details
   </h2>
+  <ng-template #addHeroTitle>
+    <h2>Adding a new Hero</h2>
+  </ng-template>
   <!-- name -->
-  <mat-form-field color="accent">
+  <mat-form-field color="accent" class="form-field">
     <mat-label>Hero name</mat-label>
     <input type="text" matInput [(ngModel)]="hero.name" />
     <button
@@ -22,8 +26,23 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  <!-- Age -->
+  <mat-form-field color="accent" class="form-field">
+    <mat-label>Hero age</mat-label>
+    <input type="number" matInput [(ngModel)]="hero.age" />
+    <button
+      *ngIf="hero.age"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="hero.age = 0"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
   <!-- class -->
-  <mat-form-field>
+  <mat-form-field color="accent" class="form-field">
     <mat-label>Class</mat-label>
     <mat-select [(value)]="hero.class">
       <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
@@ -31,8 +50,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   <!-- race -->
-  <mat-form-field>
+  <mat-form-field color="accent" class="form-field">
     <mat-label>Race</mat-label>
     <mat-select [(value)]="hero.race">
       <mat-option *ngFor="let race of staticData.RACES" [value]="race">
@@ -40,8 +60,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   <!-- sex -->
-  <mat-form-field>
+  <mat-form-field color="accent" class="form-field">
     <mat-label>Sex</mat-label>
     <mat-select [(value)]="hero.sex">
       <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
@@ -60,6 +81,7 @@
       go back
     </button>
     <button
+      *ngIf="existisHero; else addHeroButton"
       mat-raised-button
       color="accent"
       class="active-butt"
@@ -68,5 +90,16 @@
     >
       save
     </button>
+    <ng-template #addHeroButton>
+      <button
+        mat-raised-button
+        color="accent"
+        class="active-butt"
+        type="button"
+        (click)="save()"
+      >
+        Add Hero
+      </button>
+    </ng-template>
   </div>
 </div>

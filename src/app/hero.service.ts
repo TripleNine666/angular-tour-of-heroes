@@ -20,6 +20,8 @@ export class HeroService {
 
   private heroesUrl = 'api/heroes'; // URL to web api
 
+  heroes: Hero[] = [];
+
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap((_) => this.log('fetched heroes')),
@@ -32,6 +34,17 @@ export class HeroService {
     return this.http.get<Hero>(url).pipe(
       tap((_) => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  getNewId(): Observable<number> {
+    return this.getHeroes().pipe(
+      map((heroes) => (this.heroes = heroes)),
+      map(() => {
+        return this.heroes.length > 0
+          ? Math.max(...this.heroes.map((hero) => hero.id)) + 1
+          : 1;
+      })
     );
   }
 
