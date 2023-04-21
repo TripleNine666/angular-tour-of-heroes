@@ -4,6 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import * as constants from '../static-data';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 import { HeroService } from '../hero.service';
 
@@ -34,6 +42,15 @@ export class HeroDetailComponent {
     sex: '',
   };
 
+  heroForm = new FormGroup({
+    id: new FormControl(this.hero.id),
+    name: new FormControl(this.hero.name),
+    age: new FormControl(this.hero.age),
+    class: new FormControl(this.hero.class),
+    race: new FormControl(this.hero.race),
+    sex: new FormControl(this.hero.sex),
+  });
+
   ngOnInit(): void {
     if (this.router.url === '/add-hero') {
       this.existisHero = false;
@@ -46,7 +63,10 @@ export class HeroDetailComponent {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
+    this.heroService.getHero(id).subscribe((hero) => {
+      this.hero = hero;
+      this.heroForm.patchValue(hero);
+    });
   }
   goBack(): void {
     this.location.back();
@@ -59,4 +79,5 @@ export class HeroDetailComponent {
   add(): void {
     this.heroService.addHero(this.hero).subscribe();
   }
+  onSubmit() {}
 }
