@@ -14,7 +14,7 @@
       <h2>Adding a new Hero</h2>
     </ng-template>
     <!-- name -->
-    <mat-form-field color="accent" class="form-field">
+    <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>Hero name</mat-label>
       <input type="text" matInput formControlName="name" />
 
@@ -34,7 +34,7 @@
       </button>
     </mat-form-field>
     <!-- Age -->
-    <mat-form-field color="accent" class="form-field">
+    <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>Hero age</mat-label>
       <input type="number" matInput formControlName="age" />
       <mat-error class="error" *ngIf="age!.hasError('min')"
@@ -56,7 +56,7 @@
     </mat-form-field>
 
     <!-- class -->
-    <mat-form-field color="accent" class="form-field">
+    <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>Class</mat-label>
       <mat-select formControlName="class">
         <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
@@ -69,7 +69,7 @@
     </mat-form-field>
 
     <!-- race -->
-    <mat-form-field color="accent" class="form-field">
+    <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>Race</mat-label>
       <mat-select formControlName="race">
         <mat-option *ngFor="let race of staticData.RACES" [value]="race">
@@ -82,7 +82,7 @@
     </mat-form-field>
 
     <!-- sex -->
-    <mat-form-field color="accent" class="form-field">
+    <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>Sex</mat-label>
       <mat-select formControlName="sex">
         <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
@@ -96,16 +96,16 @@
     <div>
       <button
         mat-raised-button
-        color="accent"
+        [color]="getTheme()"
         class="active-butt"
         type="button"
         (click)="goBack()"
       >
-        go back
+        Go back
       </button>
       <button
         mat-raised-button
-        color="accent"
+        [color]="getTheme()"
         class="active-butt"
         type="submit"
         [disabled]="!heroForm.valid"

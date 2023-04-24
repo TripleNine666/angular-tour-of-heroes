@@ -110,6 +110,9 @@ export class HeroDetailComponent {
   clearAge() {
     this.heroForm.get('age')?.setValue(null);
   }
+  getTheme() {
+    return this.existisHero ? 'accent' : 'primary';
+  }
   onSubmit(): void {
     // if valid
     if (this.heroForm.invalid) {
