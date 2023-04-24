@@ -2,13 +2,13 @@
   <div fxLayout="column" fxLayoutAlign="center center">
     <h2
       *ngIf="existisHero; else addHeroTitle"
-      [matBadge]="hero.id"
+      [matBadge]="id?.value"
       matBadgeColor="accent"
       matBadgeOverlap="false"
       matBadgeSize="medium"
       matBadgePosition="above before"
     >
-      {{ hero.name | uppercase }} Details
+      {{ name?.value | uppercase }} Details
     </h2>
     <ng-template #addHeroTitle>
       <h2>Adding a new Hero</h2>
@@ -16,13 +16,20 @@
     <!-- name -->
     <mat-form-field color="accent" class="form-field">
       <mat-label>Hero name</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="name"
-        [(ngModel)]="hero.name"
-      />
-      <button matSuffix mat-icon-button aria-label="Clear">
+      <input type="text" matInput formControlName="name" />
+
+      <mat-error class="error" *ngIf="name!.hasError('required')"
+        >Name is required</mat-error
+      >
+      <mat-error class="error" *ngIf="name!.hasError('pattern')">
+        Hero name should be without extra char</mat-error
+      >
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearName()"
+      >
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -30,7 +37,20 @@
     <mat-form-field color="accent" class="form-field">
       <mat-label>Hero age</mat-label>
       <input type="number" matInput formControlName="age" />
-      <button matSuffix mat-icon-button aria-label="Clear">
+      <mat-error class="error" *ngIf="age!.hasError('min')"
+        >Age Should not be negative</mat-error
+      >
+      <mat-error class="error" *ngIf="age!.hasError('max')"
+        >Should not be bigger 1000</mat-error
+      >
+      <mat-error class="error" *ngIf="age!.hasError('pattern')"
+        >Age should be integer</mat-error
+      >
+      <mat-error class="error" *ngIf="age!.hasError('required')"
+        >Age is required</mat-error
+      >
+      <mat-error class="error" *ngIf="age!.invalid">Invalid input</mat-error>
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="clearAge()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -38,31 +58,40 @@
     <!-- class -->
     <mat-form-field color="accent" class="form-field">
       <mat-label>Class</mat-label>
-      <mat-select [(value)]="hero.class">
+      <mat-select formControlName="class">
         <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
           {{ class }}
         </mat-option>
       </mat-select>
+      <mat-error class="error" *ngIf="class!.hasError('required')"
+        >Class is required</mat-error
+      >
     </mat-form-field>
 
     <!-- race -->
     <mat-form-field color="accent" class="form-field">
       <mat-label>Race</mat-label>
-      <mat-select [(value)]="hero.race">
+      <mat-select formControlName="race">
         <mat-option *ngFor="let race of staticData.RACES" [value]="race">
           {{ race }}
         </mat-option>
       </mat-select>
+      <mat-error class="error" *ngIf="race!.hasError('required')"
+        >Race is required</mat-error
+      >
     </mat-form-field>
 
     <!-- sex -->
     <mat-form-field color="accent" class="form-field">
       <mat-label>Sex</mat-label>
-      <mat-select [(value)]="hero.sex">
+      <mat-select formControlName="sex">
         <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
           {{ sex }}
         </mat-option>
       </mat-select>
+      <mat-error class="error" *ngIf="sex!.hasError('required')"
+        >Sex is required</mat-error
+      >
     </mat-form-field>
     <div>
       <button
@@ -75,26 +104,14 @@
         go back
       </button>
       <button
-        *ngIf="existisHero; else addHeroButton"
         mat-raised-button
         color="accent"
         class="active-butt"
-        type="button"
-        (click)="save()"
+        type="submit"
+        [disabled]="!heroForm.valid"
       >
-        save
+        {{ buttonCupture }}
       </button>
-      <ng-template #addHeroButton>
-        <button
-          mat-raised-button
-          color="accent"
-          class="active-butt"
-          type="submit"
-          (click)="save()"
-        >
-          Add Hero
-        </button>
-      </ng-template>
     </div>
   </div>
 </form>
