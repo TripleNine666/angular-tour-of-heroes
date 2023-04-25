@@ -11,17 +11,81 @@
   </button>
 </div>
 
-<mat-nav-list>
-  <mat-list-item *ngFor="let hero of heroes" routerLink="/detail/{{ hero.id }}">
-    <span fxFlexOffset="0 120px" matListItemIcon id="badge">{{ hero.id }}</span>
-    <a matListItemTitle>{{ hero.name }}</a>
-    <button
-      mat-icon-button
-      color="primary"
-      (click)="delete(hero)"
-      matListItemMeta
+<!-- Table of heroes -->
+<mat-table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8 demo-table"
+>
+  <!-- id column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+  </ng-container>
+
+  <!-- hero name column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Hero name</mat-header-cell
     >
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-list-item>
-</mat-nav-list>
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+
+  <!-- hero age column -->
+  <ng-container matColumnDef="age">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Hero age</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.age }}</mat-cell>
+  </ng-container>
+
+  <!-- hero class column -->
+  <ng-container matColumnDef="class">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Hero Class</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.class }}</mat-cell>
+  </ng-container>
+
+  <!-- hero race column -->
+  <ng-container matColumnDef="race">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Hero Race</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.race }}</mat-cell>
+  </ng-container>
+
+  <!-- hero sex column -->
+  <ng-container matColumnDef="sex">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sex of the Hero</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sex }}</mat-cell>
+  </ng-container>
+
+  <!-- hero options column -->
+  <ng-container matColumnDef="options">
+    <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="primary"
+        matListItemMeta
+        routerLink="/detail/{{ element.id }}"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="primary"
+        matListItemMeta
+        (click)="deleteHero(element)"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

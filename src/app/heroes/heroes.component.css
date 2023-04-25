@@ -17,3 +17,28 @@
 .add-button:hover {
   box-shadow: 2px 2px 20px 2px rgba(34, 60, 80, 0.2);
 }
+.demo-table {
+  width: 100%;
+}
+.mat-column-id {
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-name {
+  width: 400px;
+  padding-left: 16px;
+  text-align: center;
+}
+.mat-column-age {
+  padding-left: 16px;
+  text-align: center;
+}
+.mat-column-sex {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.mat-column-options {
+  border-left: 1px solid currentColor;
+  text-align: center;
+}
