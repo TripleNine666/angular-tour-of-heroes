@@ -1,0 +1,10 @@
+span {
+  font-weight: bold;
+}
+.mdc-dialog__title {
+  font-size: 18px;
+  color: rgb(163, 0, 0);
+}
+.mdc-dialog__content {
+  border-bottom: 1px solid black;
+}

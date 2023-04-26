@@ -27,6 +27,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MatSortModule } from '@angular/material/sort';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
+    HeroDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

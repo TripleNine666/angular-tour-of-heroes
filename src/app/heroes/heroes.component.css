@@ -20,6 +20,10 @@
 .demo-table {
   width: 100%;
 }
+.mat-mdc-form-field {
+  font-size: 15px;
+  width: 100%;
+}
 .mat-column-id {
   border-right: 1px solid currentColor;
   text-align: center;

@@ -3,6 +3,9 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 
 @Component({
   selector: 'app-heroes',
@@ -11,7 +14,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class HeroesComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, public dialog: MatDialog) {}
   heroes: Hero[] = [];
 
   // table's columns
@@ -26,13 +29,6 @@ export class HeroesComponent implements AfterViewInit {
   ];
   dataSource = new MatTableDataSource<Hero>();
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes;
-      this.dataSource.data = heroes;
-    });
-  }
-
   ngOnInit() {
     this.getHeroes();
   }
@@ -40,9 +36,11 @@ export class HeroesComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter((h) => h !== hero);
-    this.heroService.deleteHero(hero.id).subscribe();
+  getHeroes(): void {
+    this.heroService.getHeroes().subscribe((heroes) => {
+      this.heroes = heroes;
+      this.dataSource.data = heroes;
+    });
   }
 
   deleteHero(row: any) {
@@ -50,5 +48,23 @@ export class HeroesComponent implements AfterViewInit {
     this.heroService.deleteHero(row.id).subscribe();
     this.dataSource.data.splice(this.dataSource.data.indexOf(row), 1);
     this.dataSource = new MatTableDataSource(this.dataSource.data);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog(row: any) {
+    let dialogRef = this.dialog.open(HeroDialogComponent, {
+      width: '400px',
+      data: row,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteHero(result);
+      }
+    });
   }
 }

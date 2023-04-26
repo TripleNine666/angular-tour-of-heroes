@@ -11,6 +11,16 @@
   </button>
 </div>
 
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Search Hero"
+    #input
+  />
+</mat-form-field>
+
 <!-- Table of heroes -->
 <mat-table
   [dataSource]="dataSource"
@@ -66,10 +76,10 @@
   <!-- hero options column -->
   <ng-container matColumnDef="options">
     <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
-    <mat-cell *matCellDef="let element">
+    <mat-cell *matCellDef="let element" fxLayoutAlign="space-between">
       <button
         mat-icon-button
-        color="primary"
+        color="accent"
         matListItemMeta
         routerLink="/detail/{{ element.id }}"
       >
@@ -77,9 +87,9 @@
       </button>
       <button
         mat-icon-button
-        color="primary"
+        color="warn"
         matListItemMeta
-        (click)="deleteHero(element)"
+        (click)="openDialog(element)"
       >
         <mat-icon>close</mat-icon>
       </button>
@@ -88,4 +98,11 @@
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow fxLayoutAlign="center">
+    <td class="mat-cell" colspan="4">
+      No data matching the filter "{{ input.value }}"
+    </td>
+  </tr>
 </mat-table>
