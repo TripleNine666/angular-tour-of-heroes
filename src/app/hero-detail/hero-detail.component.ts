@@ -53,7 +53,7 @@ export class HeroDetailComponent {
       [
         Validators.required,
         Validators.min(1),
-        Validators.max(1000),
+        Validators.max(3000),
         Validators.pattern(/^[1-9]\d*$/),
       ],
     ],

@@ -21,6 +21,7 @@ export const CLASSES: string[] = [
   'Death Knight',
   'Shaman',
   'Priest',
+  'Hunter',
 ];
 
 export const RACES: string[] = [

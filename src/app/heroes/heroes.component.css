@@ -32,6 +32,7 @@
   width: 400px;
   padding-left: 16px;
   text-align: center;
+  justify-content: center;
 }
 .mat-column-age {
   padding-left: 16px;
