@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
+import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
     DashboardComponent,
     HeroSearchComponent,
     HeroDialogComponent,
+    HeroChangeDialogComponent,
   ],
   imports: [
     BrowserModule,

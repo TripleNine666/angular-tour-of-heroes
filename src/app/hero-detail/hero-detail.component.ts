@@ -1,20 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from '../hero';
+import { HeroService } from '../hero.service';
+import { HeroChangeDialogComponent } from '../hero-change-dialog/hero-change-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import * as constants from '../static-data';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-
-import { HeroService } from '../hero.service';
+import { Validators, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hero-detail',
@@ -28,7 +21,8 @@ export class HeroDetailComponent {
     private heroService: HeroService,
     private location: Location,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {}
 
   // Class, race, sex
@@ -120,14 +114,20 @@ export class HeroDetailComponent {
     }
     // update
     if (this.existisHero) {
-      this.heroService
-        .updateHero(this.heroForm.value as Hero)
-        .subscribe(() => this.goBack());
+      this.heroService.updateHero(this.heroForm.value as Hero).subscribe();
     } else {
       // add
-      this.heroService
-        .addHero(this.heroForm.value as Hero)
-        .subscribe(() => this.goBack());
+      this.heroService.addHero(this.heroForm.value as Hero).subscribe();
     }
+    const dialogRef = this.dialog.open(HeroChangeDialogComponent, {
+      data: {
+        title: 'Success!',
+        hero: this.heroForm.value,
+        action: this.existisHero ? 'changed' : 'added',
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.goBack();
+    });
   }
 }
