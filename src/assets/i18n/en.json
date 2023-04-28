@@ -1,0 +1,9 @@
+{
+  "main": {
+    "title": "Tour of Heroes",
+    "button": {
+      "dashboard": "Dashboard",
+      "heroes": "Heroes"
+    }
+  }
+}

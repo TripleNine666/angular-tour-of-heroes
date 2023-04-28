@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
@@ -18,6 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -30,6 +33,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
 import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dialog.component';
+
+
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -51,6 +60,7 @@ import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dial
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
+      passThruUnknownUrl: true
     }),
     BrowserAnimationsModule,
     MatButtonModule,
@@ -66,8 +76,18 @@ import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dial
     MatTableModule,
     MatSortModule,
     MatDialogModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'ru'
+    })
+
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
