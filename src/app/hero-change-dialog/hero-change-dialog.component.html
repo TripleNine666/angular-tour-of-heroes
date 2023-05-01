@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>{{ data.title | translate }}</h1>
+<h1 mat-dialog-title>{{ data.title  }}</h1>
 <mat-dialog-content>
   <p>
     {{'hero.hero' | translate}}
     {{ data.hero.name }}
-    {{ 'dialog.change.success' | translate}} {{ data.action | translate}}.
+    {{ 'dialog.change.success' | translate}} {{ data.action }}.
   </p>
   <p>{{ 'hero.field.class' | translate }}: {{ data.hero.class }}</p>
   <p>{{ 'hero.field.race' | translate}}: {{ data.hero.race }}</p>

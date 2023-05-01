@@ -123,13 +123,15 @@ export class HeroDetailComponent {
     }
     const dialogRef = this.dialog.open(HeroChangeDialogComponent, {
       data: {
-        title: 'dialog.change.title',
+        title: this.translate.instant('dialog.change.title'),
         hero: {
           name: this.name?.value,
           class: this.translate.instant('hero.classes.' + this.class?.value),
           race: this.translate.instant('hero.races.' + this.race?.value)
         },
-        action: this.existisHero ? 'dialog.change.action.change' : 'dialog.change.action.add',
+        action: this.existisHero ?
+          this.translate.instant('dialog.change.action.change') :
+          this.translate.instant('dialog.change.action.add'),
       },
     });
     dialogRef.afterClosed().subscribe(() => {
