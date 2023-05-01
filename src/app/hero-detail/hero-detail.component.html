@@ -8,21 +8,21 @@
       matBadgeSize="medium"
       matBadgePosition="above before"
     >
-      {{ name?.value | uppercase }} Details
+      {{ name?.value | uppercase }} {{ 'heroesDetail.title.detail' | translate}}
     </h2>
     <ng-template #addHeroTitle>
-      <h2>Adding a new Hero</h2>
+      <h2>{{ 'heroesDetail.title.add' | translate}}</h2>
     </ng-template>
     <!-- name -->
     <mat-form-field [color]="getTheme()" class="form-field">
-      <mat-label>Hero name</mat-label>
+      <mat-label>{{ 'heroesDetail.form.nameField.label' | translate}}</mat-label>
       <input type="text" matInput formControlName="name" />
 
       <mat-error class="error" *ngIf="name!.hasError('required')"
-        >Name is required</mat-error
+        >{{ 'heroesDetail.form.nameField.requiredError' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="name!.hasError('pattern')">
-        Hero name should be without extra char</mat-error
+        {{ 'heroesDetail.form.nameField.patternError' |translate }}</mat-error
       >
       <button
         matSuffix
@@ -35,21 +35,21 @@
     </mat-form-field>
     <!-- Age -->
     <mat-form-field [color]="getTheme()" class="form-field">
-      <mat-label>Hero age</mat-label>
+      <mat-label>{{ 'heroesDetail.form.ageField.label' | translate}}</mat-label>
       <input type="number" matInput formControlName="age" />
       <mat-error class="error" *ngIf="age!.hasError('min')"
-        >Age Should not be negative</mat-error
+        >{{ 'heroesDetail.form.ageField.minValue' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="age!.hasError('max')"
-        >Should not be bigger 1000</mat-error
+        >{{ 'heroesDetail.form.ageField.maxValue' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="age!.hasError('pattern')"
-        >Age should be integer</mat-error
+        >{{ 'heroesDetail.form.ageField.pattern' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="age!.hasError('required')"
-        >Age is required</mat-error
+        >{{ 'heroesDetail.form.ageField.required' | translate}}</mat-error
       >
-      <mat-error class="error" *ngIf="age!.invalid">Invalid input</mat-error>
+      <mat-error class="error" *ngIf="age!.invalid">{{ 'heroesDetail.form.ageField.invalid' | translate}}</mat-error>
       <button matSuffix mat-icon-button aria-label="Clear" (click)="clearAge()">
         <mat-icon>close</mat-icon>
       </button>
@@ -57,40 +57,40 @@
 
     <!-- class -->
     <mat-form-field [color]="getTheme()" class="form-field">
-      <mat-label>Class</mat-label>
+      <mat-label>{{ 'heroesDetail.form.classField.label' | translate}}</mat-label>
       <mat-select formControlName="class">
         <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
           {{ class }}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="class!.hasError('required')"
-        >Class is required</mat-error
+        >{{ 'heroesDetail.form.classField.requiredError' | translate}}</mat-error
       >
     </mat-form-field>
 
     <!-- race -->
     <mat-form-field [color]="getTheme()" class="form-field">
-      <mat-label>Race</mat-label>
+      <mat-label>{{ 'heroesDetail.form.raceField.label' | translate}}</mat-label>
       <mat-select formControlName="race">
         <mat-option *ngFor="let race of staticData.RACES" [value]="race">
           {{ race }}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="race!.hasError('required')"
-        >Race is required</mat-error
+        >{{ 'heroesDetail.form.raceField.requiredError' | translate}}</mat-error
       >
     </mat-form-field>
 
     <!-- sex -->
     <mat-form-field [color]="getTheme()" class="form-field">
-      <mat-label>Sex</mat-label>
+      <mat-label>{{ 'heroesDetail.form.sexField.label' | translate}}</mat-label>
       <mat-select formControlName="sex">
         <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
           {{ sex }}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="sex!.hasError('required')"
-        >Sex is required</mat-error
+        >{{ 'heroesDetail.form.classField.requiredError' | translate}}</mat-error
       >
     </mat-form-field>
     <div>
@@ -101,7 +101,7 @@
         type="button"
         (click)="goBack()"
       >
-        Go back
+        {{ 'heroesDetail.form.button.back' | translate }}
       </button>
       <button
         mat-raised-button
@@ -110,7 +110,7 @@
         type="submit"
         [disabled]="!heroForm.valid"
       >
-        {{ buttonCupture }}
+        {{ buttonCupture | translate}}
       </button>
     </div>
   </div>

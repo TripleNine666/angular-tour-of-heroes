@@ -1,9 +1,73 @@
 {
-  "main": {
-    "title": "Tour of Heroes",
-    "button": {
-      "dashboard": "Dashboard",
-      "heroes": "Heroes"
-    }
-  }
+	"app": {
+		"button": {
+			"dashboard": "Dashboard",
+			"hero": "Heroes"
+		},
+		"title": "Tour of heroes"
+	},
+	"dashboard": {
+		"search": "Hero search",
+		"title": "Top Heroes"
+	},
+	"heroes": {
+		"button": {
+			"addHero": "Add hero"
+		},
+		"filter": {
+			"label": "Filter",
+			"placeholder": "Search Hero"
+		},
+		"table": {
+			"column": {
+				"age": "Hero age",
+				"class": "Hero Class",
+				"name": "Hero name",
+				"options": "Options",
+				"race": "Hero Race",
+				"sex": "Sex of the Hero"
+			}
+		},
+		"title": "My Heroes"
+	},
+	"heroesDetail": {
+		"button": {
+			"add": "Add Hero",
+			"save": "Save"
+		},
+		"form": {
+			"ageField": {
+				"invalid": "Invalid input",
+				"label": "Hero age",
+				"maxValue": "Should not be bigger 3000",
+				"minValue": "Age Should not be negative",
+				"patternError": "Age should be integer",
+				"requiredError": "Age is required"
+			},
+			"button": {
+				"back": "Go back"
+			},
+			"classField": {
+				"label": "Hero Class",
+				"requiredError": "Class is required"
+			},
+			"nameField": {
+				"label": "Hero name",
+				"patternError": "Hero name should be without extra char",
+				"requiredError": "Name is required"
+			},
+			"raceField": {
+				"label": "Race",
+				"requiredError": "Race is required"
+			},
+			"sexField": {
+				"label": "Hero Sex",
+				"requiredError": "Sex field is required"
+			}
+		},
+		"title": {
+			"add": "Adding a new Hero",
+			"detail": "Detail"
+		}
+	}
 }

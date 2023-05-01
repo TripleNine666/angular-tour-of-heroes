@@ -30,7 +30,7 @@ export class HeroDetailComponent {
 
   existisHero: boolean = true;
   // text in submit button
-  buttonCupture = 'Save';
+  buttonCupture = 'heroesDetail.button.save';
 
   // FORM
   heroForm = this.fb.group({
@@ -80,7 +80,7 @@ export class HeroDetailComponent {
     if (this.router.url === '/add-hero') {
       this.existisHero = false;
       // change text in button
-      this.buttonCupture = 'Add hero';
+      this.buttonCupture = 'heroesDetail.button.add';
       // generate id for new hero
       this.heroService.getNewId().subscribe((id) => this.id?.setValue(id));
     } else {

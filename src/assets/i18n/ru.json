@@ -1,9 +1,73 @@
 {
-  "main": {
-    "title": "Тур героев",
-    "button": {
-      "dashboard": "Приборная панель",
-      "heroes": "Герои"
-    }
-  }
+	"app": {
+		"button": {
+			"dashboard": "Приборная панель",
+			"hero": "Герои"
+		},
+		"title": "Тур Героев"
+	},
+	"dashboard": {
+		"search": "Поиск героя",
+		"title": "Лучшие Герои"
+	},
+	"heroes": {
+		"button": {
+			"addHero": "Добавить героя"
+		},
+		"filter": {
+			"label": "Фильтр",
+			"placeholder": "Поиск героя"
+		},
+		"table": {
+			"column": {
+				"age": "Возраст героя",
+				"class": "Класс героя",
+				"name": "Имя героя",
+				"options": "Опции",
+				"race": "Раса героев",
+				"sex": "Пол героя"
+			}
+		},
+		"title": "Мои герои"
+	},
+	"heroesDetail": {
+		"button": {
+			"add": "Добавить героя",
+			"save": "Сохранить"
+		},
+		"form": {
+			"ageField": {
+				"invalid": "Неправильный ввод",
+				"label": "Возраст героя",
+				"maxValue": "Не должно быть больше 3000",
+				"minValue": "Возраст не должен быть отрицательным",
+				"patternError": "Возраст должен быть целым числом",
+				"requiredError": "Укажите возраст"
+			},
+			"button": {
+				"back": "Вернуться"
+			},
+			"classField": {
+				"label": "Класс Героя",
+				"requiredError": "Требуется класс"
+			},
+			"nameField": {
+				"label": "Имя Героя",
+				"patternError": "Имя Героя должно быть без лишних символов",
+				"requiredError": "Имя обязательно"
+			},
+			"raceField": {
+				"label": "Раса",
+				"requiredError": "Раса обязательное поле"
+			},
+			"sexField": {
+				"label": "Пол Героя",
+				"requiredError": "Поле пол обязательное"
+			}
+		},
+		"title": {
+			"add": "Добавление нового героя",
+			"detail": "Подробность"
+		}
+	}
 }

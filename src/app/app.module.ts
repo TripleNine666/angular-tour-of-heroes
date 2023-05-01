@@ -35,8 +35,7 @@ import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
 import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dialog.component';
 
 
-
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 

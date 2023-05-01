@@ -1,4 +1,4 @@
-<h2 fxLayoutAlign="center center">My Heroes</h2>
+<h2 fxLayoutAlign="center center">{{ 'heroes.title' | translate}}</h2>
 
 <div fxLayout="column" fxLayoutAlign="center center">
   <button
@@ -7,16 +7,16 @@
     class="add-button"
     routerLink="/add-hero"
   >
-    Add hero
+    {{ 'heroes.button.addHero' | translate}}
   </button>
 </div>
 
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>{{ 'heroes.filter.label' | translate }}</mat-label>
   <input
     matInput
     (keyup)="applyFilter($event)"
-    placeholder="Search Hero"
+    placeholder="{{ 'heroes.filter.placeholder' | translate}}"
     #input
   />
 </mat-form-field>
@@ -36,7 +36,7 @@
   <!-- hero name column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header
-      >Hero name</mat-header-cell
+      >{{ 'heroes.table.column.name' | translate }}</mat-header-cell
     >
     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
@@ -44,7 +44,7 @@
   <!-- hero age column -->
   <ng-container matColumnDef="age">
     <mat-header-cell *matHeaderCellDef mat-sort-header
-      >Hero age</mat-header-cell
+      >{{ 'heroes.table.column.age' | translate }}</mat-header-cell
     >
     <mat-cell *matCellDef="let element">{{ element.age }}</mat-cell>
   </ng-container>
@@ -52,7 +52,7 @@
   <!-- hero class column -->
   <ng-container matColumnDef="class">
     <mat-header-cell *matHeaderCellDef mat-sort-header
-      >Hero Class</mat-header-cell
+      >{{ 'heroes.table.column.class' | translate }}</mat-header-cell
     >
     <mat-cell *matCellDef="let element">{{ element.class }}</mat-cell>
   </ng-container>
@@ -60,7 +60,7 @@
   <!-- hero race column -->
   <ng-container matColumnDef="race">
     <mat-header-cell *matHeaderCellDef mat-sort-header
-      >Hero Race</mat-header-cell
+      >{{ 'heroes.table.column.race' | translate }}</mat-header-cell
     >
     <mat-cell *matCellDef="let element">{{ element.race }}</mat-cell>
   </ng-container>
@@ -68,14 +68,14 @@
   <!-- hero sex column -->
   <ng-container matColumnDef="sex">
     <mat-header-cell *matHeaderCellDef mat-sort-header
-      >Sex of the Hero</mat-header-cell
+      >{{ 'heroes.table.column.sex' | translate }}</mat-header-cell
     >
     <mat-cell *matCellDef="let element">{{ element.sex }}</mat-cell>
   </ng-container>
 
   <!-- hero options column -->
   <ng-container matColumnDef="options">
-    <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>{{ 'heroes.table.column.options' | translate }}</mat-header-cell>
     <mat-cell *matCellDef="let element" fxLayoutAlign="space-between">
       <button
         mat-icon-button
