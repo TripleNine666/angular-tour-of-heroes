@@ -1,8 +1,12 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
+<h1 mat-dialog-title>{{ data.title | translate }}</h1>
 <mat-dialog-content>
-  <p>Hero {{ data.hero.name }} successfully {{ data.action }}.</p>
-  <p>Class: {{ data.hero.class }}</p>
-  <p>Race: {{ data.hero.race }}</p>
+  <p>
+    {{'hero.hero' | translate}}
+    {{ data.hero.name }}
+    {{ 'dialog.change.success' | translate}} {{ data.action | translate}}.
+  </p>
+  <p>{{ 'hero.field.class' | translate }}: {{ data.hero.class }}</p>
+  <p>{{ 'hero.field.race' | translate}}: {{ data.hero.race }}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>ОК</button>

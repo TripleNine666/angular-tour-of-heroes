@@ -10,6 +10,61 @@
 		"search": "Поиск героя",
 		"title": "Лучшие Герои"
 	},
+	"dialog": {
+		"change": {
+			"action": {
+				"add": "добавлен",
+				"change": "изменен"
+			},
+			"success": "Успешно",
+			"title": "Успех!"
+		},
+		"delete": {
+			"button": {
+				"close": "Закрыть",
+				"delete": "Удалить"
+			},
+			"content": "После удаления его нельзя восстановить.",
+			"question": "Вы уверены, что хотите удалить героя",
+			"title": "Удалить героя"
+		}
+	},
+	"hero": {
+		"classes": {
+			"deathKnight": "Рыцарь смерти",
+			"hunter": "Охотник",
+			"mage": "Маг",
+			"paladin": "Паладин",
+			"priest": "Жрец",
+			"rogue": "Разбойник",
+			"shaman": "Шаман",
+			"warlock": "Чернокнижник",
+			"warrior": "Воин"
+		},
+		"field": {
+			"age": "Возраст",
+			"class": "Класс",
+			"name": "Имя",
+			"race": "Раса",
+			"sex": "Пол"
+		},
+		"hero": "Герой",
+		"races": {
+			"dwarve": "Дворф",
+			"elve": "Эльф",
+			"gnome": "Гном",
+			"goblin": "Гоблин",
+			"human": "Человек",
+			"nightElve": "Ночной эльф",
+			"orc": "Орк",
+			"troll": "Тролль",
+			"undead": "Нежить"
+		},
+		"sex": {
+			"female": "Женский",
+			"male": "Мужской"
+		}
+	},
 	"heroes": {
 		"button": {
 			"addHero": "Добавить героя"
@@ -26,7 +81,8 @@
 				"options": "Опции",
 				"race": "Раса героев",
 				"sex": "Пол героя"
-			}
+			},
+			"noFound": "Нет данных, соответствующих фильтру"
 		},
 		"title": "Мои герои"
 	},
@@ -49,25 +105,40 @@
 			},
 			"classField": {
 				"label": "Класс Героя",
-				"requiredError": "Требуется класс"
+				"requiredError": "Укажите класс"
 			},
 			"nameField": {
 				"label": "Имя Героя",
 				"patternError": "Имя Героя должно быть без лишних символов",
-				"requiredError": "Имя обязательно"
+				"requiredError": "Укажите имя"
 			},
 			"raceField": {
 				"label": "Раса",
-				"requiredError": "Раса обязательное поле"
+				"requiredError": "Укажите расу"
 			},
 			"sexField": {
 				"label": "Пол Героя",
-				"requiredError": "Поле пол обязательное"
+				"requiredError": "Укажите пол"
 			}
 		},
 		"title": {
 			"add": "Добавление нового героя",
-			"detail": "Подробность"
+			"detail": "Подробности"
 		}
+	},
+	"messages": {
+		"clearButton": "Очистить сообщения",
+		"heroService": {
+			"addHero": "добавлен герой",
+			"deleteHero": "Удаленный герой",
+			"getHero": "полученный герой",
+			"getHeroes": "полученные герои",
+			"search": {
+				"found": "найдены герои, совпадающие с",
+				"noFound": "нет подходящих героев с"
+			},
+			"updateHero": "обновленный герой "
+		},
+		"title": "Сообщения"
 	}
 }

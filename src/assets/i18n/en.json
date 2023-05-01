@@ -10,6 +10,61 @@
 		"search": "Hero search",
 		"title": "Top Heroes"
 	},
+	"dialog": {
+		"change": {
+			"action": {
+				"add": "added",
+				"change": "changed"
+			},
+			"success": "successfully",
+			"title": "Success!"
+		},
+		"delete": {
+			"button": {
+				"close": "Close",
+				"delete": "Delete"
+			},
+			"content": "After deleting, it cannot be restored.",
+			"question": "Are you sure you want to delete the hero",
+			"title": "Delete Hero"
+		}
+	},
+	"hero": {
+		"classes": {
+			"deathKnight": "Death Knight",
+			"hunter": "Hunter",
+			"mage": "Mage",
+			"paladin": "Paladin",
+			"priest": "Priest",
+			"rogue": "Rogue",
+			"shaman": "Shaman",
+			"warlock": "Warlock",
+			"warrior": "Warrior"
+		},
+		"field": {
+			"age": "Age",
+			"class": "Class",
+			"name": "Name",
+			"race": "Race",
+			"sex": "Sex"
+		},
+		"hero": "Hero",
+		"races": {
+			"dwarve": "Dwarve",
+			"elve": "Elve",
+			"gnome": "Gnome",
+			"goblin": "Goblin",
+			"human": "Human",
+			"nightElve": "Night Elve",
+			"orc": "Orc",
+			"troll": "Troll",
+			"undead": "Undead"
+		},
+		"sex": {
+			"female": "Female",
+			"male": "Male"
+		}
+	},
 	"heroes": {
 		"button": {
 			"addHero": "Add hero"
@@ -26,7 +81,8 @@
 				"options": "Options",
 				"race": "Hero Race",
 				"sex": "Sex of the Hero"
-			}
+			},
+			"noFound": "No data matching the filter"
 		},
 		"title": "My Heroes"
 	},
@@ -69,5 +125,20 @@
 			"add": "Adding a new Hero",
 			"detail": "Detail"
 		}
+	},
+	"messages": {
+		"clearButton": "Clear messages",
+		"heroService": {
+			"addHero": "added hero ",
+			"deleteHero": "Delete hero",
+			"getHero": "fetched hero ",
+			"getHeroes": "fetched heroes",
+			"search": {
+				"found": "found heroes matching",
+				"noFound": "no heroes matching"
+			},
+			"updateHero": "updated hero"
+		},
+		"title": "Messages"
 	}
 }

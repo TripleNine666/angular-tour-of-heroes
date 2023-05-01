@@ -47,7 +47,7 @@
         >{{ 'heroesDetail.form.ageField.pattern' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="age!.hasError('required')"
-        >{{ 'heroesDetail.form.ageField.required' | translate}}</mat-error
+        >{{ 'heroesDetail.form.ageField.requiredError' | translate}}</mat-error
       >
       <mat-error class="error" *ngIf="age!.invalid">{{ 'heroesDetail.form.ageField.invalid' | translate}}</mat-error>
       <button matSuffix mat-icon-button aria-label="Clear" (click)="clearAge()">
@@ -60,7 +60,7 @@
       <mat-label>{{ 'heroesDetail.form.classField.label' | translate}}</mat-label>
       <mat-select formControlName="class">
         <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
-          {{ class }}
+          {{ 'hero.classes.' + class | translate }}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="class!.hasError('required')"
@@ -73,7 +73,7 @@
       <mat-label>{{ 'heroesDetail.form.raceField.label' | translate}}</mat-label>
       <mat-select formControlName="race">
         <mat-option *ngFor="let race of staticData.RACES" [value]="race">
-          {{ race }}
+          {{ 'hero.races.' + race | translate}}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="race!.hasError('required')"
@@ -86,11 +86,11 @@
       <mat-label>{{ 'heroesDetail.form.sexField.label' | translate}}</mat-label>
       <mat-select formControlName="sex">
         <mat-option *ngFor="let sex of staticData.SEX" [value]="sex">
-          {{ sex }}
+          {{ 'hero.sex.' + sex | translate}}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="sex!.hasError('required')"
-        >{{ 'heroesDetail.form.classField.requiredError' | translate}}</mat-error
+        >{{ 'heroesDetail.form.sexField.requiredError' | translate}}</mat-error
       >
     </mat-form-field>
     <div>

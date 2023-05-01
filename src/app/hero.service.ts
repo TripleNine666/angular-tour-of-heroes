@@ -4,6 +4,7 @@ import { Hero } from './hero';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ import { MessageService } from './message.service';
 export class HeroService {
   constructor(
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private translate: TranslateService
   ) {}
 
   httpOptions = {
@@ -24,7 +26,7 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
+      tap((_) => this.log(this.translate.instant('messages.heroService.getHeroes'))),
       catchError(this.handleError<Hero[]>('getHeroes', []))
     );
   }
@@ -32,7 +34,7 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap((_) => this.log(`fetched hero id=${id}`)),
+      tap((_) => this.log(this.translate.instant('messages.heroService.getHero') + ` ${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
@@ -53,7 +55,8 @@ export class HeroService {
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((_) => this.log(`updated hero id=${hero.id}`)),
+      tap((_) =>
+        this.log(this.translate.instant('messages.heroService.updateHero') + ` ${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
@@ -62,7 +65,10 @@ export class HeroService {
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero: Hero) =>
-        this.log(`added hero w/ id=${newHero.id}, name:${newHero.name}`)
+        this.log(
+          `${this.translate.instant('messages.heroService.addHero')}
+           id = ${hero.id},
+           ${this.translate.instant('hero.field.name')} = ${hero.name}`)
       ),
       catchError(this.handleError<Hero>('addHero'))
     );
@@ -72,7 +78,8 @@ export class HeroService {
   deleteHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap((_) => this.log(`Delete hero id:${id}`)),
+      tap((_) =>
+        this.log(`${this.translate.instant('messages.heroService.deleteHero')} id:${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
@@ -86,8 +93,8 @@ export class HeroService {
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap((x) =>
         x.length
-          ? this.log(`found heroes matching "${term}"`)
-          : this.log(`no heroes matching "${term}"`)
+          ? this.log(`${this.translate.instant('messages.heroService.search.found')} "${term}"`)
+          : this.log(`${this.translate.instant('messages.heroService.search.noFound')} "${term}"`)
       ),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );

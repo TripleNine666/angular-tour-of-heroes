@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-heroes',
@@ -14,7 +15,7 @@ import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 })
 export class HeroesComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private heroService: HeroService, public dialog: MatDialog) {}
+  constructor(private heroService: HeroService, public dialog: MatDialog, private translate: TranslateService ) {}
   heroes: Hero[] = [];
 
   // table's columns
@@ -38,8 +39,16 @@ export class HeroesComponent implements AfterViewInit {
 
   getHeroes(): void {
     this.heroService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes;
-      this.dataSource.data = heroes;
+
+      this.heroes = heroes.map(hero => {
+        // This is necessary for the filter to work
+        const translatedClass = this.translate.instant('hero.classes.' + hero.class);
+        const translatedRace = this.translate.instant('hero.races.' + hero.race);
+        const translatedSex = this.translate.instant('hero.sex.' + hero.sex);
+
+        return {...hero, class: translatedClass, race: translatedRace, sex: translatedSex};
+      });
+      this.dataSource.data = this.heroes;
     });
   }
 

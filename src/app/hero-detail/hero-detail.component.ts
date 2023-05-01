@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import * as constants from '../static-data';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-hero-detail',
@@ -22,7 +23,8 @@ export class HeroDetailComponent {
     private location: Location,
     private router: Router,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate: TranslateService
   ) {}
 
   // Class, race, sex
@@ -121,9 +123,13 @@ export class HeroDetailComponent {
     }
     const dialogRef = this.dialog.open(HeroChangeDialogComponent, {
       data: {
-        title: 'Success!',
-        hero: this.heroForm.value,
-        action: this.existisHero ? 'changed' : 'added',
+        title: 'dialog.change.title',
+        hero: {
+          name: this.name?.value,
+          class: this.translate.instant('hero.classes.' + this.class?.value),
+          race: this.translate.instant('hero.races.' + this.race?.value)
+        },
+        action: this.existisHero ? 'dialog.change.action.change' : 'dialog.change.action.add',
       },
     });
     dialogRef.afterClosed().subscribe(() => {

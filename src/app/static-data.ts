@@ -13,27 +13,27 @@
 // ];
 
 export const CLASSES: string[] = [
-  'Warraior',
-  'Paladin',
-  'Rogue',
-  'Mage',
-  'Warlock',
-  'Death Knight',
-  'Shaman',
-  'Priest',
-  'Hunter',
+  'deathKnight',
+  'hunter',
+  'mage',
+  'paladin',
+  'priest',
+  'rogue',
+  'shaman',
+  'warlock',
+  'warrior',
 ];
 
 export const RACES: string[] = [
-  'Human',
-  'Dwarve',
-  'Night Elve',
-  'Elve',
-  'Gnome',
-  'Orc',
-  'Undead',
-  'Troll',
-  'Goblin',
+  'dwarve',
+  'elve',
+  'gnome',
+  'goblin',
+  'human',
+  'nightElve',
+  'orc',
+  'troll',
+  'undead',
 ];
 
 export const SEX: string[] = ['male', 'female'];

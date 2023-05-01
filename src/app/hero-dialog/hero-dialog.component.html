@@ -1,16 +1,16 @@
-<h1 mat-dialog-title>Delete Hero {{ data.name }}</h1>
+<h1 mat-dialog-title>{{ 'dialog.delete.title' | translate }} {{ data.name }}</h1>
 <div mat-dialog-content>
   <p>
-    Are you sure you want to delete the hero <span>{{ data.name }}</span
+    {{ 'dialog.delete.question' | translate }} <span>{{ data.name }}</span
     >?
   </p>
   <p>
-    Class:<span>{{ data.class }}</span>
+    {{'hero.field.class' | translate}}:<span>{{ data.class }}</span>
   </p>
   <p>
-    Race: <span>{{ data.race }}</span>
+    {{ 'hero.field.race' | translate}}: <span>{{ data.race }}</span>
   </p>
-  <p>After deleting, it cannot be restored.</p>
+  <p>{{ 'dialog.delete.content' | translate }}</p>
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button (click)="onNoClick()">Close</button>
