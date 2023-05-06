@@ -116,10 +116,10 @@ export class HeroDetailComponent {
     }
     // update
     if (this.existisHero) {
-      this.heroService.updateHero(this.heroForm.value as Hero).subscribe();
+      this.heroService.updateHero(this.heroForm.value as Hero).then();
     } else {
       // add
-      this.heroService.addHero(this.heroForm.value as Hero).subscribe();
+      this.heroService.addHero(this.heroForm.value as Hero).then();
     }
     const dialogRef = this.dialog.open(HeroChangeDialogComponent, {
       data: {

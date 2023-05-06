@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 import {TranslateService} from "@ngx-translate/core";
 
+
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -49,12 +50,13 @@ export class HeroesComponent implements AfterViewInit {
         return {...hero, class: translatedClass, race: translatedRace, sex: translatedSex};
       });
       this.dataSource.data = this.heroes;
+      console.log(this.heroes)
     });
   }
 
   deleteHero(row: any) {
     this.heroes = this.heroes.filter((h) => h !== row);
-    this.heroService.deleteHero(row.id).subscribe();
+    this.heroService.deleteHero(row.id).then();
     this.dataSource.data.splice(this.dataSource.data.indexOf(row), 1);
     this.dataSource = new MatTableDataSource(this.dataSource.data);
   }
