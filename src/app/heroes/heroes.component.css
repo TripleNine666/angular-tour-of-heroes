@@ -24,15 +24,12 @@
   font-size: 15px;
   width: 100%;
 }
-.mat-column-id {
-  border-right: 1px solid currentColor;
-  text-align: center;
-}
 .mat-column-name {
   width: 400px;
   padding-left: 16px;
   text-align: center;
   justify-content: center;
+  border-right: 1px solid black;
 }
 .mat-column-age {
   padding-left: 16px;

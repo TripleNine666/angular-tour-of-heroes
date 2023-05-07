@@ -2,11 +2,6 @@
   <div fxLayout="column" fxLayoutAlign="center center">
     <h2
       *ngIf="existisHero; else addHeroTitle"
-      [matBadge]="id?.value"
-      matBadgeColor="accent"
-      matBadgeOverlap="false"
-      matBadgeSize="medium"
-      matBadgePosition="above before"
     >
       {{ name?.value | uppercase }} {{ 'heroesDetail.title.detail' | translate}}
     </h2>
@@ -59,8 +54,8 @@
     <mat-form-field [color]="getTheme()" class="form-field">
       <mat-label>{{ 'heroesDetail.form.classField.label' | translate}}</mat-label>
       <mat-select formControlName="class">
-        <mat-option *ngFor="let class of staticData.CLASSES" [value]="class">
-          {{ 'hero.classes.' + class | translate }}
+        <mat-option *ngFor="let heroClass of staticData.CLASSES" [value]="heroClass">
+          {{ 'hero.classes.' + heroClass | translate }}
         </mat-option>
       </mat-select>
       <mat-error class="error" *ngIf="class!.hasError('required')"

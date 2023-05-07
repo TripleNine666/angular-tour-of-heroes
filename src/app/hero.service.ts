@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Hero } from './hero';
-import {filter, from, Observable, of} from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import {TranslateService} from "@ngx-translate/core";
-import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/compat/database';
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +15,6 @@ export class HeroService {
 
   constructor(
     private messageService: MessageService,
-    // private http: HttpClient,
     private translate: TranslateService,
     private db: AngularFireDatabase
   ) {
@@ -25,63 +22,41 @@ export class HeroService {
 
   }
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  // };
-
-  // private heroesUrl = 'api/heroes'; // URL to web api
-
   heroes: Hero[] = [];
 
-  getHeroes(): Observable<Hero[]> {
-    return this.heroesRef.valueChanges().pipe(
+  getHeroes(): Observable<any[]> {
+    return this.heroesRef.snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
+      )),
       tap((_) => this.log(this.translate.instant('messages.heroService.getHeroes'))),
       catchError(this.handleError<Hero[]>('getHeroes', []))
     );
   }
 
-  // TODO: Нужно сделать чвтобы работал hero-detail
-  getHero(id: number): Observable<Hero> {
-    const url = `${this.dbPath}/${id}`;
+  getHero(key: string | null): Observable<Hero> {
+    const url = `${this.dbPath}/${key}`;
     return this.db.object<Hero>(url).valueChanges().pipe(
       map(hero => { if (hero) { return hero; } else {
-        throw new Error(`Hero not found with id ${id}`);
+        throw new Error(`Hero not found with id ${key}`);
       }
       }),
-      tap((_) => this.log(this.translate.instant('messages.heroService.getHero') + ` ${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
-    );
-  }
-
-  getNewId(): Observable<number> {
-    return this.getHeroes().pipe(
-      map((heroes) => (this.heroes = heroes)),
-      map(() => {
-        return this.heroes.length > 0
-          ? Math.max(...this.heroes.map((hero) => hero.id)) + 1
-          : 1;
-      })
+      tap((_) => this.log(this.translate.instant('messages.heroService.getHero') + ` ${key}`)),
+      catchError(this.handleError<Hero>(`getHero id=${key}`))
     );
   }
 
   //////// Save methods //////////
 
   /** PUT: update the hero on the server */
-  updateHero(hero: Hero): Promise<void> {
-    const heroRef = this.db.object<Hero>(`heroes/${hero.id}`);
-
-    return this.updateHeroObject(heroRef, hero).then(() => {
+  updateHero(key: string | null, hero: Hero): Promise<void> {
+    const heroRef = this.db.object<Hero>(`heroes/${key}`);
+    return heroRef.update(hero).then(() => {
       // log the success message
-    this.log(this.translate.instant('messages.heroService.updateHero') + ` ${hero.id}`)
+    this.log(this.translate.instant('messages.heroService.updateHero') + ` ${key}`)
         // handle any error
-    }).catch(error => {
-      catchError(this.handleError<any>('updateHero', error));
-    });
-  }
-
-  // helper method to update the hero object in the database
-  private updateHeroObject(heroRef: AngularFireObject<Hero>, hero: Hero): Promise<void> {
-    return heroRef.update(hero);
+      }).catch(error => {
+        catchError(this.handleError<any>('updateHero', error));
+      });
   }
 
 
@@ -100,23 +75,24 @@ export class HeroService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteHero(id: string): Promise<void> {
-    const heroRef = this.db.object<Hero>(`${this.dbPath}/${id}`);
+  deleteHero(key: string): Promise<void> {
+    const heroRef = this.db.object<Hero>(`${this.dbPath}/${key}`);
     return heroRef.remove().then(() => {
-      this.log(`${this.translate.instant('messages.heroService.deleteHero')} id:${id}`);
+      this.log(`${this.translate.instant('messages.heroService.deleteHero')} id:${key}`);
     }).catch((error) => {
       this.handleError<Hero>('deleteHero', error)
     });
   }
 
   /* GET heroes whose name contains search term */
-  searchHeroes(term: string): Observable<Hero[]> {
+  searchHeroes(term: string): Observable<any[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.heroesRef.valueChanges().pipe(
-      filter((heroes: Hero[]) => heroes.some((hero: Hero) => hero.name.includes(term))),
+    return this.heroesRef.snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))),
+      map(heroes => heroes.filter(hero => hero.name!.toLowerCase().includes(term.toLowerCase()))),
       tap((x) =>
         x.length
           ? this.log(`${this.translate.instant('messages.heroService.search.found')} "${term}"`)

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { HeroChangeDialogComponent } from '../hero-change-dialog/hero-change-dialog.component';
@@ -16,7 +16,6 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./hero-detail.component.css'],
 })
 export class HeroDetailComponent {
-  // @Input() hero?: Hero;
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -30,13 +29,13 @@ export class HeroDetailComponent {
   // Class, race, sex
   staticData = constants;
 
+  key: string | null = '';
+
   existisHero: boolean = true;
   // text in submit button
   buttonCupture = 'heroesDetail.button.save';
-
   // FORM
   heroForm = this.fb.group({
-    id: [0],
     name: [
       '',
       [
@@ -58,9 +57,6 @@ export class HeroDetailComponent {
     sex: ['', Validators.required],
   });
 
-  get id() {
-    return this.heroForm.get('id');
-  }
   get name() {
     return this.heroForm.get('name');
   }
@@ -83,8 +79,6 @@ export class HeroDetailComponent {
       this.existisHero = false;
       // change text in button
       this.buttonCupture = 'heroesDetail.button.add';
-      // generate id for new hero
-      this.heroService.getNewId().subscribe((id) => this.id?.setValue(id));
     } else {
       // update hero
       this.getHero();
@@ -92,9 +86,10 @@ export class HeroDetailComponent {
   }
 
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id).subscribe((hero) => {
+    const key = this.route.snapshot.paramMap.get('key');
+    this.heroService.getHero(key).subscribe((hero) => {
       this.heroForm.patchValue(hero);
+      this.key = key;
     });
   }
   goBack(): void {
@@ -116,7 +111,7 @@ export class HeroDetailComponent {
     }
     // update
     if (this.existisHero) {
-      this.heroService.updateHero(this.heroForm.value as Hero).then();
+      this.heroService.updateHero(this.key, this.heroForm.value as Hero).then();
     } else {
       // add
       this.heroService.addHero(this.heroForm.value as Hero).then();

@@ -3,7 +3,7 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 import {TranslateService} from "@ngx-translate/core";
@@ -21,7 +21,6 @@ export class HeroesComponent implements AfterViewInit {
 
   // table's columns
   displayedColumns: string[] = [
-    'id',
     'name',
     'age',
     'class',
@@ -50,7 +49,6 @@ export class HeroesComponent implements AfterViewInit {
         return {...hero, class: translatedClass, race: translatedRace, sex: translatedSex};
       });
       this.dataSource.data = this.heroes;
-      console.log(this.heroes)
     });
   }
 

@@ -15,7 +15,7 @@
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
         *ngFor="let hero of heroes$ | async"
-        routerLink="/detail/{{ hero.id }}"
+        routerLink="/detail/{{ hero.key }}"
       >
         {{ hero.name }}
       </mat-option>

@@ -27,11 +27,6 @@
   matSort
   class="mat-elevation-z8 demo-table"
 >
-  <!-- id column -->
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
-  </ng-container>
 
   <!-- hero name column -->
   <ng-container matColumnDef="name">
@@ -81,7 +76,7 @@
         mat-icon-button
         color="accent"
         matListItemMeta
-        routerLink="/detail/{{ element.id }}"
+        routerLink="/detail/{{ element.key }}"
       >
         <mat-icon>edit</mat-icon>
       </button>
