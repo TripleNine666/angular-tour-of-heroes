@@ -1,0 +1,18 @@
+/* chat.component.css */
+.container {
+  width: 600px;
+  margin: auto;
+}
+
+.messages {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.input {
+  display: flex;
+}
+
+input {
+  flex-grow: 1;
+}

@@ -1,0 +1,11 @@
+<!-- chat.component.html -->
+<div class="container">
+  <h1>Глобальный чат</h1>
+  <div class="messages">
+    <p *ngFor="let msg of messages">{{msg}}</p>
+  </div>
+  <div class="input">
+    <input type="text" [(ngModel)]="messageText" (keyup.enter)="sendMessage()">
+    <button (click)="sendMessage()">Отправить</button>
+  </div>
+</div>

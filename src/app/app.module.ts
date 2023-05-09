@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -35,7 +37,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeroDialogComponent } from './hero-dialog/hero-dialog.component';
 import { HeroChangeDialogComponent } from './hero-change-dialog/hero-change-dialog.component';
+import { ChatComponent } from './chat/chat.component';
 
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 export function createTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -51,8 +56,10 @@ export function createTranslateLoader (http: HttpClient) {
     HeroSearchComponent,
     HeroDialogComponent,
     HeroChangeDialogComponent,
+    ChatComponent,
   ],
   imports: [
+    SocketIoModule.forRoot(config),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -81,11 +88,12 @@ export function createTranslateLoader (http: HttpClient) {
         deps: [HttpClient]
       },
       defaultLanguage: 'ru'
-    })
+    }),
 
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {
+  
 }
