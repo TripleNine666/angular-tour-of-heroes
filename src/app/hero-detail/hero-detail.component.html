@@ -1,7 +1,7 @@
 <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
   <div fxLayout="column" fxLayoutAlign="center center">
     <h2
-      *ngIf="existisHero; else addHeroTitle"
+      *ngIf="existsHero; else addHeroTitle"
     >
       {{ name?.value | uppercase }} {{ 'heroesDetail.title.detail' | translate}}
     </h2>
@@ -110,4 +110,4 @@
     </div>
   </div>
 </form>
-<app-chat></app-chat>
+<app-chat *ngIf="existsHero" [heroName]="getNotNullName()"></app-chat>

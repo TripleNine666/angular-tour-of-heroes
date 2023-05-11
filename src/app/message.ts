@@ -1,4 +1,6 @@
 export interface Message {
-  id: string;
-  body: string;
+  message: string,
+  heroName: string,
+  mine?: boolean,
+  time: string
 }

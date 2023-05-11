@@ -1,11 +1,20 @@
-<!-- chat.component.html -->
-<div class="container">
-  <h1>Глобальный чат</h1>
-  <div class="messages">
-    <p *ngFor="let msg of messages">{{msg}}</p>
+<div class="chat-container">
+  <div class="chat-header">
+    <h1>Глобальный чат на Angular Socket IO</h1>
   </div>
-  <div class="input">
-    <input type="text" [(ngModel)]="messageText" (keyup.enter)="sendMessage()">
+  <div class="chat-body">
+    <div class="message" *ngFor="let msg of messages">
+      <div class="message-info" [ngClass]="{'mine-info': msg.mine, 'not-mine-info': !msg.mine}">
+        <span class="message-hero">{{msg.heroName}}</span>
+        <span class="message-time">{{msg.time}}</span>
+      </div>
+      <div class="message-content" [ngClass]="{'mine': msg.mine, 'not-mine': !msg.mine}">
+        {{msg.message}}
+      </div>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" [(ngModel)]="messageText" placeholder="Введите сообщение...">
     <button (click)="sendMessage()">Отправить</button>
   </div>
 </div>

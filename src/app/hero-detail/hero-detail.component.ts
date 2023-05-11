@@ -31,7 +31,7 @@ export class HeroDetailComponent {
 
   key: string | null = '';
 
-  existisHero: boolean = true;
+  existsHero: boolean = true;
   // text in submit button
   buttonCupture = 'heroesDetail.button.save';
   // FORM
@@ -76,12 +76,20 @@ export class HeroDetailComponent {
   ngOnInit(): void {
     //add hero
     if (this.router.url === '/add-hero') {
-      this.existisHero = false;
+      this.existsHero = false;
       // change text in button
       this.buttonCupture = 'heroesDetail.button.add';
     } else {
       // update hero
       this.getHero();
+    }
+  }
+
+  getNotNullName(): string {
+    if (this.name?.value) {
+      return this.name?.value
+    } else {
+      return 'null'
     }
   }
 
@@ -102,7 +110,7 @@ export class HeroDetailComponent {
     this.heroForm.get('age')?.setValue(null);
   }
   getTheme() {
-    return this.existisHero ? 'accent' : 'primary';
+    return this.existsHero ? 'accent' : 'primary';
   }
   onSubmit(): void {
     // if valid
@@ -110,7 +118,7 @@ export class HeroDetailComponent {
       return;
     }
     // update
-    if (this.existisHero) {
+    if (this.existsHero) {
       this.heroService.updateHero(this.key, this.heroForm.value as Hero).then();
     } else {
       // add
@@ -124,7 +132,7 @@ export class HeroDetailComponent {
           class: this.translate.instant('hero.classes.' + this.class?.value),
           race: this.translate.instant('hero.races.' + this.race?.value)
         },
-        action: this.existisHero ?
+        action: this.existsHero ?
           this.translate.instant('dialog.change.action.change') :
           this.translate.instant('dialog.change.action.add'),
       },
