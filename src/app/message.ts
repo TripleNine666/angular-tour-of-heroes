@@ -1,6 +1,7 @@
 export interface Message {
   message: string,
-  heroName: string,
+  heroKey: string,
+  heroName?: string,
   mine?: boolean,
   time: string
 }

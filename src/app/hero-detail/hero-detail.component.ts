@@ -9,6 +9,7 @@ import * as constants from '../static-data';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {TranslateService} from "@ngx-translate/core";
+import {LogicalFileSystem} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-hero-detail',
@@ -85,9 +86,9 @@ export class HeroDetailComponent {
     }
   }
 
-  getNotNullName(): string {
-    if (this.name?.value) {
-      return this.name?.value
+  getNotNullKey(): string {
+    if (this.key) {
+      return this.key
     } else {
       return 'null'
     }

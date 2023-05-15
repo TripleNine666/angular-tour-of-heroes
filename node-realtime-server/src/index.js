@@ -27,10 +27,6 @@ io.on('connection', (socket) => {
 
   // Обрабатываем получение сообщения от клиента
   socket.on('message', (msg) => {
-
-    msg.time = new Date().toLocaleTimeString();
-    console.log(msg.time)
-
     // Отправляем сообщение всем подключенным клиентам
     io.emit('message', msg);
   });

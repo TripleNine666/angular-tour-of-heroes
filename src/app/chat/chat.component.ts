@@ -9,7 +9,7 @@ import { Message } from "../message";
 })
 export class ChatComponent implements OnInit {
 
-  @Input() heroName!: string ;
+  @Input() heroKey!: string ;
 
   // Сообщения чата
   messages: Message[] = [];
@@ -17,28 +17,38 @@ export class ChatComponent implements OnInit {
   // Текст текущего сообщения
   messageText: string = '';
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService) {
+
+
+  }
 
   ngOnInit(): void {
-    if(!this.heroName) {
-      this.heroName = 'null'
-    }
+
+    let sub = this.chatService.getMessages().subscribe(messages => {
+      this.messages = messages.map(msg => {
+        return {...msg, mine: this.heroKey === msg.heroKey}
+      })
+      sub.unsubscribe()
+    })
+
     // Подписываемся на получение сообщений от сервиса
     this.chatService.getMessage().subscribe((msg) => {
-      if(msg.heroName !== this.heroName){
-        this.messages.push({message: msg.message, heroName: msg.heroName, mine: false, time: msg.time});
+      if(msg.heroKey === this.heroKey){
+        this.messages.push({message: msg.message, heroKey: msg.heroKey, heroName: msg.heroName, mine: true, time: msg.time});
+      } else {
+        this.messages.push({message: msg.message, heroKey: msg.heroKey, heroName: msg.heroName, mine: false, time: msg.time});
       }
     });
+
   }
 
   // Отправляем сообщение по нажатию на кнопку или Enter
   sendMessage() {
     if (this.messageText) {
-      this.chatService.sendMessage(this.messageText, this.heroName);
-      this.messages.push({message: this.messageText, heroName: this.heroName, mine: true, time: new Date().toLocaleTimeString()});
+      const time = new Date().toLocaleTimeString()
+      this.chatService.sendMessage(this.messageText, this.heroKey, time);
       this.messageText = '';
-    }
   }
-
+  }
 }
 
